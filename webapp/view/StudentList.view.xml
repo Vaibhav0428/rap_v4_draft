@@ -1,0 +1,244 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:core="sap.ui.core"
+    controllerName="zrapv4.controller.StudentList"
+>
+    <m:Page
+        id="_IDGenPage"
+        title="Students (RAP OData V4)"
+    >
+        <m:headerContent>
+            <m:Toolbar id="_IDGenToolbar2">
+                <!-- Firstname -->
+
+                <m:Label
+                    id="_IDGenLabel1"
+                    text="Firstname"
+                />
+
+                <m:Input
+                    id="inpFirstName"
+                    width="10rem"
+                    value="{vm>/firstname}"
+                    liveChange=".onFilterLive"
+                />
+
+                <!-- Age -->
+
+                <m:Label
+                    id="_IDGenLabel8"
+                    text="Age"
+                />
+
+                <m:Input
+                    id="inpAge"
+                    width="6rem"
+                    type="Number"
+                    value="{vm>/age}"
+                    liveChange=".onFilterLive"
+                />
+
+                <!-- Gender -->
+
+                <m:Label
+                    id="_IDGenLabel9"
+                    text="Gender"
+                    visible="{filterVisibility>/Gender}"
+                />
+
+                <m:Select
+                    id="inpGender"
+                    width="8rem"
+                    change=".onFilterLive"
+                    visible="{filterVisibility>/Gender}"
+                >
+                    <m:items>
+                        <core:Item
+                            id="_IDGenItem12"
+                            key=""
+                            text=""
+                        />
+
+                        <core:Item
+                            id="_IDGenItem1"
+                            key="M"
+                            text="Male"
+                        />
+
+                        <core:Item
+                            id="_IDGenItem4"
+                            key="F"
+                            text="Female"
+                        />
+                    </m:items>
+                </m:Select>
+
+                <!-- Course -->
+
+                <m:Label
+                    id="_IDGenLabel10"
+                    text="Course"
+                    visible="{filterVisibility>/Course}"
+                />
+
+                <m:Input
+                    id="inpCourse"
+                    width="10rem"
+                    liveChange=".onFilterLive"
+                    visible="{filterVisibility>/Course}"
+                />
+
+                <!-- Status -->
+
+                <m:Label
+                    id="_IDGenLabel11"
+                    text="Status"
+                    visible="{filterVisibility>/Status}"
+                />
+
+                <m:Select
+                    id="inpStatus"
+                    width="8rem"
+                    change=".onFilterLive"
+                    visible="{filterVisibility>/Status}"
+                >
+                    <m:items>
+                        <core:Item
+                            id="_IDGenItem22"
+                            key=""
+                            text=""
+                        />
+
+                        <core:Item
+                            id="_IDGenItem2"
+                            key="true"
+                            text="Active"
+                        />
+
+                        <core:Item
+                            id="_IDGenItem3"
+                            key="false"
+                            text="Inactive"
+                        />
+                    </m:items>
+                </m:Select>
+
+                <!-- Adapt Filters Button -->
+
+                <m:Button
+                    id="_IDGenButton5"
+                    icon="sap-icon://filter"
+                    text="Adapt Filters"
+                    press=".onOpenAdaptFilter"
+                />
+
+                <m:ToolbarSpacer id="_IDGenToolbarSpacer2" />
+
+                <!-- CRUD buttons -->
+
+                <m:Button
+                    id="_IDGenButton6"
+                    text="Create"
+                    type="Emphasized"
+                    press=".onCreate"
+                />
+
+                <m:Button
+                    id="_IDGenButton7"
+                    text="Delete"
+                    type="Reject"
+                    press=".onDelete"
+                />
+
+                <m:Button
+                    id="_IDGenButton8"
+                    icon="sap-icon://refresh"
+                    press=".onRefresh"
+                />
+            </m:Toolbar>
+        </m:headerContent>
+
+        <m:content>
+            <m:Table
+                id="StudentTable"
+                items="{ path: '/ZSTUDENT_HDR_TAB_P_new' }"
+                mode="MultiSelect"
+                growing="true"
+            >
+                <m:columns>
+                    <m:Column id="_IDGenColumn4">
+                        <m:Text
+                            id="_IDGenText"
+                            text="ID"
+                        />
+                    </m:Column>
+
+                    <m:Column id="_IDGenColumn5">
+                        <m:Text
+                            id="_IDGenText5"
+                            text="First Name"
+                        />
+                    </m:Column>
+
+                    <m:Column id="_IDGenColumn6">
+                        <m:Text
+                            id="_IDGenText6"
+                            text="Age"
+                        />
+                    </m:Column>
+
+                    <m:Column id="_IDGenColumn7">
+                        <m:Text
+                            id="_IDGenText7"
+                            text="Status"
+                        />
+                    </m:Column>
+
+                    <m:Column
+                        id="_IDGenColumn8"
+                        width="3rem"
+                    >
+                        <m:Text
+                            id="_IDGenText8"
+                            text=""
+                        />
+                    </m:Column>
+                </m:columns>
+
+                <m:items>
+                    <m:ColumnListItem id="_IDGenColumnListItem1">
+                        <m:cells>
+                            <m:Text
+                                id="_IDGenText9"
+                                text="{Id}"
+                            />
+
+                            <m:Text
+                                id="_IDGenText10"
+                                text="{firstname}"
+                            />
+
+                            <m:Text
+                                id="_IDGenText11"
+                                text="{Age}"
+                            />
+
+                            <m:Text
+                                id="_IDGenText12"
+                                text="{Status}"
+                            />
+
+                            <m:Button
+                                id="_IDGenButton9"
+                                icon="sap-icon://arrow-right"
+                                type="Transparent"
+                                press=".onRowNavigate"
+                            />
+                        </m:cells>
+                    </m:ColumnListItem>
+                </m:items>
+            </m:Table>
+        </m:content>
+    </m:Page>
+</mvc:View>

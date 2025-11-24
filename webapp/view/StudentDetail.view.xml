@@ -1,0 +1,140 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:m="sap.m"
+  xmlns:uxap="sap.uxap"
+  xmlns:layout="sap.ui.layout.form"
+  controllerName="zrapv4.controller.StudentDetail"
+  height="100%"
+  displayBlock="true">
+
+  <uxap:ObjectPageLayout
+    id="objPage"
+    showTitleInHeaderContent="true"
+    showFooter="true"
+    >
+    <uxap:headerTitle>
+      <uxap:ObjectPageDynamicHeaderTitle id="_IDGenObjectPageDynamicHeaderTitle">
+        <uxap:heading>
+          <m:Title id="_IDGenTitle" text="Student Details" />
+        </uxap:heading>
+      </uxap:ObjectPageDynamicHeaderTitle>
+    </uxap:headerTitle>
+
+    <uxap:sections>
+
+      <!-- Header -->
+      <uxap:ObjectPageSection id="_IDGenObjectPageSection" title="Student Information">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection">
+            <layout:SimpleForm id="_IDGenSimpleForm" editable="true" layout="ResponsiveGridLayout" labelSpanM="3" columnsM="2">
+
+              <m:Label id="_IDGenLabel" text="Student ID"/>
+              <m:Input id="_IDGenInput" value="{vm>/Id}" editable="false" placeholder="Auto-generated"/>
+
+              <!-- <m:Label id="_IDGenLabel1" text="Generated UUID (debug)"/>
+              <m:Text id="_IDGenText" text="{vm>/Id}"/> -->
+
+              <m:Label id="_IDGenLabel2" text="First Name"/>
+              <m:Input id="_IDGenInput1" value="{vm>/firstname}"/>
+
+              <m:Label id="_IDGenLabel3" text="Last Name"/>
+              <m:Input id="_IDGenInput2" value="{vm>/Lastname}"/>
+
+              <m:Label id="_IDGenLabel4" text="Age"/>
+              <m:Input id="_IDGenInput3" value="{vm>/Age}" type="Number"/>
+
+              <m:Label id="_IDGenLabel5" text="Course"/>
+              <m:Input id="_IDGenInput4" value="{vm>/Course}"/>
+
+              <m:Label id="_IDGenLabel6" text="Gender"/>
+              <m:Input id="_IDGenInput5" value="{vm>/Gender}"/>
+
+              <m:Label id="_IDGenLabel7" text="Status"/>
+              <m:Switch id="_IDGenSwitch" state="{vm>/Status}"/>
+            </layout:SimpleForm>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
+
+      <!-- Attachments -->
+      <uxap:ObjectPageSection id="_IDGenObjectPageSection1" title="Attachments">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection1">
+            <m:VBox id="_IDGenVBox" fitContainer="true">
+              <m:Toolbar id="_IDGenToolbar">
+                <m:Title id="_IDGenTitle1" text="Attachments" level="H3"/>
+                <m:ToolbarSpacer id="_IDGenToolbarSpacer"/>
+                <m:Button id="_IDGenButton" text="Add" type="Emphasized" icon="sap-icon://add" press=".onAddAttachment"/>
+                <m:Button id="_IDGenButton1" text="Delete" type="Reject" icon="sap-icon://delete" press=".onDeleteAttachment"/>
+              </m:Toolbar>
+
+              <m:Table id="AttachmentTable"
+                       items="{vm>/_Attachments}"
+                       mode="SingleSelectMaster"
+                       growing="true">
+                <m:columns>
+                  <m:Column id="_IDGenColumn"><m:Text id="_IDGenText1" text="Attachment ID"/></m:Column>
+                  <m:Column id="_IDGenColumn1"><m:Text id="_IDGenText2" text="File Name"/></m:Column>
+                  <m:Column id="_IDGenColumn2"><m:Text id="_IDGenText3" text="Comments"/></m:Column>
+                  <m:Column id="_IDGenColumn3"><m:Text id="_IDGenText4" text="MIME Type"/></m:Column>
+                  <m:Column id="_IDGenColumn42"><m:Text id="_IDGenText52" text="Attachment"/></m:Column>
+                </m:columns>
+
+                <m:items>
+                  <m:ColumnListItem id="_IDGenColumnListItem">
+                    <m:cells>
+                      <m:Input id="_IDGenInput6" value="{vm>AttachId}"/>
+                      <m:Input id="_IDGenInput7" value="{vm>Filename}"/>
+                      <m:Input id="_IDGenInput8" value="{vm>Comments}"/>
+                      <m:Input id="_IDGenInput9" value="{vm>Mimetype}"/>
+                      <!-- <m:Input id="_IDGenInput91" value="{vm>image_icon}"/> -->
+                           <m:HBox id="_IDGenHBox">
+
+            <!-- Show IMAGE if mimetype starts with 'image/' -->
+            <m:Image id="_IDGenImage1"
+                
+                src="{= ${vm>Attachment@odata.mediaReadLink} }"
+                width="80px"
+                height="80px"
+                decorative="false"
+                press=".onPreviewImage"
+            />
+
+            <!-- Show LINK (PDF, XLSX, DOCX, ZIP, etc.) -->
+            <m:Link id="_IDGenLink"
+                
+                text="{vm>Filename}"
+                href="{vm>mediaUrl}"
+                target="https://my404757.s4hana.cloud.sap/sap/opu/odata4/sap/zsrb_upload_managed_v4/srvd/sap/zsrd_upload_managed/0001/ZSTUDENT_HDR_TAB_P_new(Id=fa163e08-4e28-1fd0-aea9-44684cfab411,IsActiveEntity=true)/_Attachments(AttachId='1',Id=fa163e08-4e28-1fd0-aea9-44684cfab411,IsActiveEntity=true)/Attachment"
+            />
+
+        </m:HBox>
+
+                    </m:cells>
+                  </m:ColumnListItem>
+                </m:items>
+              </m:Table>
+            </m:VBox>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
+
+    </uxap:sections>
+
+<uxap:footer>
+  <m:OverflowToolbar id="_IDGenOverflowToolbar1" width="100%">
+    <m:ToolbarSpacer id="_IDGenToolbarSpacer1" />
+    <!-- Save -->
+    <m:Button id="_IDGenButton3"
+      text="Save"
+      type="Emphasized"
+      press=".onSave" />
+
+    <!-- Back -->
+    <m:Button id="_IDGenButton4"
+      text="Back"
+      press=".onNavBack" />
+  </m:OverflowToolbar>
+</uxap:footer>
+  </uxap:ObjectPageLayout>
+</mvc:View>
