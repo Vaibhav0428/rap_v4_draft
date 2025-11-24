@@ -91,14 +91,14 @@
                            <m:HBox id="_IDGenHBox">
 
             <!-- Show IMAGE if mimetype starts with 'image/' -->
-            <!-- <m:Image id="_IDGenImage1"
+            <m:Image id="_IDGenImage1"
                 
                 src="{= ${vm>Attachment@odata.mediaReadLink} }"
                 width="80px"
                 height="80px"
                 decorative="false"
                 press=".onPreviewImage"
-            /> -->
+            />
 
             <!-- Show LINK (PDF, XLSX, DOCX, ZIP, etc.) -->
             <m:Link id="_IDGenLink"
